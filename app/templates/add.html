@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add Item</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<div class="max-w-md mx-auto p-6 bg-white rounded shadow mt-10">
+  <h2 class="text-2xl font-bold mb-4">Add New Inventory Item</h2>
+  <form action="/add" method="post" class="space-y-4">
+    <input name="name" placeholder="Item name" class="w-full border p-2 rounded" required>
+    <input name="quantity" type="number" placeholder="Quantity" class="w-full border p-2 rounded" required>
+    <input name="location" placeholder="Location" class="w-full border p-2 rounded" required>
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Item</button>
+  </form>
+  <a href="/" class="text-blue-500 mt-4 inline-block">Back to Dashboard</a>
+</div>
+</body>
+</html>

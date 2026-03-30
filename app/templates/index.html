@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Inventory Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<div class="max-w-5xl mx-auto p-6">
+    <h1 class="text-3xl font-bold">{{ app_name }}</h1>
+
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold">Inventory Dashboard</h1>
+    <a href="/add" class="bg-blue-500 text-white px-4 py-2 rounded">+ Add Item</a>
+  </div>
+
+  <div class="grid grid-cols-3 gap-4 mb-6">
+    <div class="bg-white p-4 rounded shadow">
+      <p>Total Items</p>
+      <h2 class="text-2xl font-bold">{{ items | length }}</h2>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <p>Low Stock</p>
+      <h2 class="text-2xl font-bold text-red-500">{{ low_stock_count }}</h2>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <p>Locations</p>
+      <h2 class="text-2xl font-bold">3</h2>
+    </div>
+  </div>
+
+  <div class="bg-white rounded shadow">
+    <table class="w-full">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-3 text-left">Item</th>
+          <th class="p-3 text-left">Qty</th>
+          <th class="p-3 text-left">Location</th>
+          <th class="p-3 text-left">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr class="border-t">
+          <td class="p-3">{{ item.name }}</td>
+          <td class="p-3">{{ item.quantity }}</td>
+          <td class="p-3">{{ item.location }}</td>
+          <td class="p-3">
+            {% if item.quantity < 5 %}
+            <span class="text-red-500 font-bold">Low</span>
+            {% else %}
+            <span class="text-green-500 font-bold">In Stock</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+    <p class="text-gray-500 text-sm mt-4">
+        Environment: {{ app_env }} | App Name: {{ app_name }}
+    </p>
+
+</div>
+</body>
+</html>
