@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edit Item</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<div class="max-w-3xl mx-auto p-6">
+
+  <h1 class="text-3xl font-bold mb-6">Edit Item</h1>
+
+  <form action="/edit/{{ item.id }}" method="post" class="bg-white p-6 rounded shadow space-y-4">
+    <div>
+      <label class="block font-semibold mb-1" for="name">Item Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value="{{ item.name }}"
+        class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        required
+      >
+    </div>
+
+    <div>
+      <label class="block font-semibold mb-1" for="quantity">Quantity</label>
+      <input
+        type="number"
+        id="quantity"
+        name="quantity"
+        value="{{ item.quantity }}"
+        class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        required
+        min="0"
+      >
+    </div>
+
+    <div>
+      <label class="block font-semibold mb-1" for="location">Location</label>
+      <input
+        type="text"
+        id="location"
+        name="location"
+        value="{{ item.location }}"
+        class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        required
+      >
+    </div>
+
+    <div class="flex justify-between items-center mt-4">
+      <button
+        type="submit"
+        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+      >
+        Update
+      </button>
+      <a href="/" class="text-gray-500 hover:underline">Cancel</a>
+    </div>
+
+  </form>
+
+</div>
+</body>
+</html>

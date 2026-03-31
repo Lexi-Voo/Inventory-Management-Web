@@ -23,45 +23,60 @@
       <p>Low Stock</p>
       <h2 class="text-2xl font-bold text-red-500">{{ low_stock_count }}</h2>
     </div>
-    <div class="bg-white p-4 rounded shadow">
-      <p>Locations</p>
-      <h2 class="text-2xl font-bold">3</h2>
-    </div>
+
   </div>
 
   <div class="bg-white rounded shadow">
-    <table class="w-full">
-      <thead class="bg-gray-200">
-        <tr>
-          <th class="p-3 text-left">Item</th>
-          <th class="p-3 text-left">Qty</th>
-          <th class="p-3 text-left">Location</th>
-          <th class="p-3 text-left">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in items %}
-        <tr class="border-t">
-          <td class="p-3">{{ item.name }}</td>
-          <td class="p-3">{{ item.quantity }}</td>
-          <td class="p-3">{{ item.location }}</td>
-          <td class="p-3">
-            {% if item.quantity < 5 %}
-            <span class="text-red-500 font-bold">Low</span>
-            {% else %}
-            <span class="text-green-500 font-bold">In Stock</span>
-            {% endif %}
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <table class="w-full">
+    <thead class="bg-gray-200">
+      <tr>
+        <th class="p-3 text-left">Item</th>
+        <th class="p-3 text-left">Qty</th>
+        <th class="p-3 text-left">Location</th>
+        <th class="p-3 text-left">Status</th>
+        <th class="p-3 text-left">Actions</th> <!-- NEW -->
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for item in items %}
+      <tr class="border-t">
+        <td class="p-3">{{ item.name }}</td>
+        <td class="p-3">{{ item.quantity }}</td>
+        <td class="p-3">{{ item.location }}</td>
+
+        <td class="p-3">
+          {% if item.quantity < 5 %}
+          <span class="text-red-500 font-bold">Low</span>
+          {% else %}
+          <span class="text-green-500 font-bold">In Stock</span>
+          {% endif %}
+        </td>
+
+        <!-- ✅ ACTION BUTTONS -->
+        <td class="p-3 space-x-2">
+
+          <!-- Edit -->
+          <a href="/edit/{{ item.id }}"
+             class="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded text-sm">
+             Edit
+          </a>
+
+          <!-- Delete -->
+          <form action="/delete/{{ item.id }}" method="post" class="inline">
+            <button type="submit"
+              class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-sm">
+              Delete
+            </button>
+          </form>
+
+        </td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
   </div>
 
-    <p class="text-gray-500 text-sm mt-4">
-        Environment: {{ app_env }} | App Name: {{ app_name }}
-    </p>
-
-</div>
 </body>
 </html>
